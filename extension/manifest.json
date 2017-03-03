@@ -1,0 +1,31 @@
+{
+  "name": "sequence-diagrams",
+  "version": "1.0.0",
+  "description": "sequence-diagrams",
+  "homepage_url": "https://github.com/Redisrupt/sequence-diagrams",
+  "manifest_version": 2,
+  "minimum_chrome_version": "48",
+  "permissions": [
+    "https://github.com/*",
+    "https://gist.github.com/*"
+  ],
+  "icons": {
+    "128": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_start",
+      "matches": [
+        "https://github.com/*",
+        "https://gist.github.com/*"
+      ],
+      "css": [
+        "diagrams.css"
+      ],
+      "js": [
+        "mermaid.min.js",
+        "content.js"
+      ]
+    }
+  ]
+}
