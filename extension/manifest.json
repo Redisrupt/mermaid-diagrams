@@ -1,6 +1,6 @@
 {
   "name": "mermaid-diagrams",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Enable `Mermaid diagrams` on github wiki and markdown files",
   "homepage_url": "https://github.com/Redisrupt/mermaid-diagrams",
   "manifest_version": 2,
