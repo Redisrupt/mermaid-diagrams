@@ -11,6 +11,13 @@
       elem.style.display = 'none';
     });
 
+    const elems = $('.language-mermaid');
+    elems.forEach(elem => {
+      const code = elem.textContent;
+      elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
+      elem.style.display = 'none';
+    });
+
     window.mermaid.init();
   });
 
