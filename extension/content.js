@@ -4,18 +4,21 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     let elems = $('[lang="mermaid"]');
-    elems.forEach(elem => {
-      const codeElem = $('code', elem)[0];
+
+    const replaceChart = (codeElem) => {
       const code = codeElem.textContent;
       elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
       elem.style.display = 'none';
+    };
+
+    elems.forEach(elem => {
+      const codeElem = $('code', elem)[0];
+      replaceChart(codeElem);
     });
 
     elems = $('.language-mermaid');
     elems.forEach(elem => {
-      const code = elem.textContent;
-      elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
-      elem.style.display = 'none';
+      replaceChart(elem);
     });
 
     window.mermaid.init();
