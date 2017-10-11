@@ -16,6 +16,10 @@ This will generate a nice diagram if loaded from github. The extension will just
 
 ## Instructions to install it
 
+### From [ChromeStore](https://chrome.google.com/webstore/detail/mermaid-diagrams/phfcghedmopjadpojhmmaffjmfiakfil)
+
+Just click the link above and follow the instructions
+
 ### From source
 
 1. Enable developer mode in chrome://extensions
