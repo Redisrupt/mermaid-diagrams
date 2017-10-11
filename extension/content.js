@@ -17,9 +17,7 @@
     });
 
     elems = $('.language-mermaid');
-    elems.forEach(elem => {
-      replaceChart(elem);
-    });
+    elems.forEach(replaceChart);
 
     window.mermaid.init();
   });
