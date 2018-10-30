@@ -1,0 +1,14 @@
+/*
+  This trick for listening to changes by class was taken from
+  https://davidwalsh.name/detect-node-insertion.
+*/
+@keyframes mermaidDiagramCodeInserted {
+	from { opacity: 0.99; }
+	to { opacity: 1; }
+}
+
+/* The class list here determines what elements are detected. */
+.language-mermaid, [lang="mermaid"] {
+  animation-duration: 0.001s;
+  animation-name: mermaidDiagramCodeInserted;
+}

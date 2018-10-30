@@ -2,27 +2,57 @@
 
   const $ = (selector, ctx = document) => [].slice.call(ctx.querySelectorAll(selector));
 
-  document.addEventListener('DOMContentLoaded', () => {
-    let elems = $('[lang="mermaid"]');
+  function existingDiagramNode (elem) {
+    return $('.mermaid', elem.parentElement)[0]
+  }
 
-    const replaceChart = (elem, code) => {
+  function setupChart(elem, code) {
+    let existingDiagram = existingDiagramNode(elem)
+    if (existingDiagram) {
+      existingDiagram.innerHTML = code
+    } else {
+      // Create the element that will house the rendered diagram.
       elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
       elem.style.display = 'none';
-    };
+      existingDiagram = existingDiagramNode(elem)
 
-    elems.forEach(elem => {
+      // Create an observer to track changes to the diagram code.
+      const observer = new MutationObserver(() => { processElement(elem) });
+      observer.observe(elem, { characterData: true });
+    }
+
+    // Generate or regenerate diagram if it is existing.
+    window.mermaid.init([existingDiagram]);
+  };
+
+  function processElement(elem) {
+    if (elem.attributes["lang"] !== null) {
       const codeElem = $('code', elem)[0];
       const code = codeElem.textContent;
-      replaceChart(elem, code);
-    });
-
-    elems = $('.language-mermaid');
-    elems.forEach(elem => {
+      setupChart(elem, code);
+    } else {
       const code = elem.textContent;
-      replaceChart(elem, code);
-    });
+      setupChart(elem, code);
+    }
+  };
 
-    window.mermaid.init();
+  function onElementInsert(event){
+    // We are only interested in the diagrams that trigger the css animation
+    // called "mermaidDiagramCodeInserted". This is determined by the file
+    // "on_change_animations.css".
+    if (event.animationName !== "mermaidDiagramCodeInserted") {
+      return
+    }
+    processElement(event.target);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    $('[lang="mermaid"]').forEach(processElement);
+    $('.language-mermaid').forEach(processElement);
+
+    // This catches diagrams that are added to the page after it is loaded.
+    // This might include comments from other users.
+    document.addEventListener("animationstart", onElementInsert, false);
   });
 
 }());
