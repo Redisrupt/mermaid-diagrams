@@ -3,6 +3,7 @@ A simple chrome extension to add support for [mermaid](http://knsv.github.io/mer
 
 For example add this to any wiki page or markdown file in github
 
+<div>
 **Example 1**
 
 ```mermaid
@@ -13,7 +14,8 @@ sequenceDiagram
   C->> B: Response
   B->> A: Forward response
 ```
-
+</div>
+<div>
 **Example 2**
 
 ```mermaid
@@ -24,6 +26,7 @@ sequenceDiagram
   C->> B: Response of B
   B->> A: Forward response of B
 ```
+</div>
 
 This will generate a nice diagram if loaded from github. The extension will just replace the code block with the generated [mermaid](http://knsv.github.io/mermaid/index.html) diagram.
 
