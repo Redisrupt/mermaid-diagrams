@@ -3,6 +3,8 @@ A simple chrome extension to add support for [mermaid](http://knsv.github.io/mer
 
 For example add this to any wiki page or markdown file in github
 
+**Example 1**
+
 ```mermaid
 sequenceDiagram
   A->> B: Query
@@ -10,6 +12,16 @@ sequenceDiagram
   Note right of C: Thinking...
   C->> B: Response
   B->> A: Forward response
+```
+
+**Example 2**
+```mermaid
+sequenceDiagram
+  A->> B: Another query
+  B->> C: Forwarding another query
+  Note right of C: Thinking again...
+  C->> B: Response for new query
+  B->> A: Forwarding response for new query
 ```
 
 This will generate a nice diagram if loaded from github. The extension will just replace the code block with the generated [mermaid](http://knsv.github.io/mermaid/index.html) diagram.
