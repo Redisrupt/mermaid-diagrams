@@ -14,16 +14,6 @@ sequenceDiagram
   B->> A: Forward response
 ```
 
-**Example 2**
-```mermaid
-sequenceDiagram
-  A->> B: Another query
-  B->> C: Forwarding another query
-  Note right of C: Thinking again...
-  C->> B: Response for new query
-  B->> A: Forwarding response for new query
-```
-
 This will generate a nice diagram if loaded from github. The extension will just replace the code block with the generated [mermaid](http://knsv.github.io/mermaid/index.html) diagram.
 
 ## Instructions to install it
