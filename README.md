@@ -6,6 +6,7 @@ For example add this to any wiki page or markdown file in github
 
 **Example 1**
 <div>
+
 ```mermaid
 sequenceDiagram
   A->> B: Query
@@ -14,10 +15,13 @@ sequenceDiagram
   C->> B: Response
   B->> A: Forward response
 ```
+
 </div>
 
 **Example 2**
+
 <div>
+
 ```mermaid
 sequenceDiagram
   A->> B: Query B
@@ -26,6 +30,7 @@ sequenceDiagram
   C->> B: Response of B
   B->> A: Forward response of B
 ```
+
 </div>
 
 This will generate a nice diagram if loaded from github. The extension will just replace the code block with the generated [mermaid](http://knsv.github.io/mermaid/index.html) diagram.
