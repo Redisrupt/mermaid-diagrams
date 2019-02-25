@@ -3,9 +3,9 @@ A simple chrome extension to add support for [mermaid](http://knsv.github.io/mer
 
 For example add this to any wiki page or markdown file in github
 
-<div>
-**Example 1**
 
+**Example 1**
+<div>
 ```mermaid
 sequenceDiagram
   A->> B: Query
@@ -15,9 +15,9 @@ sequenceDiagram
   B->> A: Forward response
 ```
 </div>
-<div>
-**Example 2**
 
+**Example 2**
+<div>
 ```mermaid
 sequenceDiagram
   A->> B: Query B
