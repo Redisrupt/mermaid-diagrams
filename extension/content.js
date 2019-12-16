@@ -26,7 +26,7 @@
   };
 
   function processElement(elem) {
-    if (elem.attributes["lang"] !== null) {
+    if (elem.attributes["lang"] !== null && elem.attributes['lang'] !== undefined) {
       const codeElem = $('code', elem)[0];
       const code = codeElem.textContent;
       setupChart(elem, code);
@@ -47,8 +47,12 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Github
     $('[lang="mermaid"]').forEach(processElement);
     $('.language-mermaid').forEach(processElement);
+
+    // Bitbucket
+    $('.codehilite.language-mermaid').forEach(processElement);
 
     // This catches diagrams that are added to the page after it is loaded.
     // This might include comments from other users.
