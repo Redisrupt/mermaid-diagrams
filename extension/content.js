@@ -7,14 +7,24 @@
   }
 
   function setupChart(elem, code) {
-    let existingDiagram = existingDiagramNode(elem)
-    if (existingDiagram) {
+    var postfix = Math.random().toString(36).substr(2, 9);
+    var source_name = elem.id;
+
+    if (elem.id == "") {
+       source_name = 'idname_' + postfix;
+       elem.id = source_name;
+    }
+
+    var mermaid_name = 'mermaid_' + source_name;
+    let existingDiagrams = $(`#${mermaid_name}`);
+    if (existingDiagrams.length > 0) {
+      existingDiagram = existingDiagrams[0];
       existingDiagram.innerHTML = code;
     } else {
       // Create the element that will house the rendered diagram.
-      elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
+      elem.insertAdjacentHTML('afterend', `<div class="mermaid" id="${mermaid_name}">${code}</div>`);
       elem.style.display = 'none';
-      existingDiagram = existingDiagramNode(elem)
+      existingDiagram = $(`#${mermaid_name}`)[0];
 
       // Create an observer to track changes to the diagram code.
       const observer = new MutationObserver(() => { processElement(elem) });
@@ -23,7 +33,7 @@
 
     try {
       // Generate or regenerate diagram if it is existing.
-      window.mermaid.init();
+      window.mermaid.init([existingDiagram]);
     }
     catch(error) {
         existingDiagram.innerHTML = "Error when passing" + error;
@@ -31,6 +41,7 @@
   };
 
   function processElement(elem) {
+    console.log(elem);
     if (elem.tagName == "CODE") {
       const code = elem.textContent;
       setupChart(elem.parentElement, code);
