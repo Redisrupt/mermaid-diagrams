@@ -3,12 +3,12 @@ A simple chrome extension to add support for [mermaid](http://knsv.github.io/mer
 
 ### Install From source
 
-1. Enable developer mode in chrome://extensions
-2. Clone the repo
+1. Clone the repo
    ```bash
    git clone https://github.com/howard0su/mermaid-diagrams
    ```
-3. Click on load unpacked extension
+2. Enable developer mode by typing chrome://extensions in address bar.
+3. Click on load unpacked extension.
 4. Select the *extensions* folder inside the recently cloned repo
 
 Done!
