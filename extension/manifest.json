@@ -16,7 +16,7 @@
     {
       "run_at": "document_start",
       "matches": [
-        "https://msdata.visualstudio.com/*",
+        "https://msdata.visualstudio.com/*"
       ],
       "css": [
         "diagrams.css",
