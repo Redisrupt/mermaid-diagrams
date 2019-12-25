@@ -15,15 +15,19 @@
       elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
       elem.style.display = 'none';
       existingDiagram = existingDiagramNode(elem)
-      existingDiagram.innerHTML = code;
 
       // Create an observer to track changes to the diagram code.
       const observer = new MutationObserver(() => { processElement(elem) });
       observer.observe(elem, { characterData: true });
     }
 
-    // Generate or regenerate diagram if it is existing.
-    window.mermaid.init([existingDiagram]);
+    try {
+      // Generate or regenerate diagram if it is existing.
+      window.mermaid.init();
+    }
+    catch(error) {
+        existingDiagram.innerHTML = "Error when passing" + error;
+    }
   };
 
   function processElement(elem) {
