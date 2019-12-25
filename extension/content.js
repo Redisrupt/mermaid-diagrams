@@ -9,12 +9,13 @@
   function setupChart(elem, code) {
     let existingDiagram = existingDiagramNode(elem)
     if (existingDiagram) {
-      existingDiagram.innerHTML = code
+      existingDiagram.innerHTML = code;
     } else {
       // Create the element that will house the rendered diagram.
       elem.insertAdjacentHTML('afterend', `<div class="mermaid">${code}</div>`);
       elem.style.display = 'none';
       existingDiagram = existingDiagramNode(elem)
+      existingDiagram.innerHTML = code;
 
       // Create an observer to track changes to the diagram code.
       const observer = new MutationObserver(() => { processElement(elem) });
@@ -26,7 +27,10 @@
   };
 
   function processElement(elem) {
-    if (elem.attributes["lang"] !== null) {
+    if (elem.tagName == "CODE") {
+      const code = elem.textContent;
+      setupChart(elem.parentElement, code);
+    } else if (elem.attributes["lang"] != null) {
       const codeElem = $('code', elem)[0];
       const code = codeElem.textContent;
       setupChart(elem, code);

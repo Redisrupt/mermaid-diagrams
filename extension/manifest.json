@@ -16,8 +16,7 @@
     {
       "run_at": "document_start",
       "matches": [
-        "https://github.com/*",
-        "https://gist.github.com/*"
+        "https://msdata.visualstudio.com/*",
       ],
       "css": [
         "diagrams.css",
