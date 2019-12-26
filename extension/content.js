@@ -37,7 +37,7 @@
   };
 
   function processElement(elem) {
-    if (elem.attributes["lang"] != null) {
+    if (elem.attributes["lang"] !== null) {
       const codeElem = $('code', elem)[0];
       const code = codeElem.textContent;
       setupChart(elem, code);
