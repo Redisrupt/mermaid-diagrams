@@ -3,12 +3,12 @@
   const $ = (selector, ctx = document) => [].slice.call(ctx.querySelectorAll(selector));
 
   function setupChart(elem, code) {
-    var postfix = Math.random().toString(36).substr(2, 9);
     var source_name = elem.id;
 
     if (elem.id == "") {
-       source_name = 'idname_' + postfix;
-       elem.id = source_name;
+      const postfix = Math.random().toString(36).substr(2, 9);
+      source_name = 'idname_' + postfix;
+      elem.id = source_name;
     }
 
     var mermaid_name = 'mermaid_' + source_name;
