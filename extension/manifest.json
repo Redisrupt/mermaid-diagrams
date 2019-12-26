@@ -1,12 +1,14 @@
 {
-  "name": "mermaid-diagrams-vso",
+  "name": "mermaid-diagrams",
   "version": "1.0.0",
-  "description": "Enable `Mermaid diagrams` on visualstudio online (VSO)",
-  "homepage_url": "https://github.com/howard0su/mermaid-diagrams",
+  "description": "Enable `Mermaid diagrams` on github wiki and markdown files",
+  "homepage_url": "https://github.com/Redisrupt/mermaid-diagrams",
   "manifest_version": 2,
   "minimum_chrome_version": "56",
   "permissions": [
-    "https://*.visualstudio.com/*"
+     "https://*.visualstudio.com/*",
+     "https://github.com/*",
+     "https://gist.github.com/*"
   ],
   "icons": {
     "128": "icon.png"
@@ -15,7 +17,9 @@
     {
       "run_at": "document_start",
       "matches": [
-        "https://*.visualstudio.com/*"
+        "https://*.visualstudio.com/*",
+        "https://github.com/*",
+        "https://gist.github.com/*"
       ],
       "css": [
         "diagrams.css",
