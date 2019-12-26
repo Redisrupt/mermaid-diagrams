@@ -8,6 +8,11 @@
 }
 
 /* The class list here determines what elements are detected. */
+.language-mermaid, [lang="mermaid"] {
+  animation-duration: 0.001s;
+  animation-name: mermaidDiagramCodeInserted;
+}
+
 .hljs {
   animation-duration: 0.001s;
   animation-name: mermaidDiagramCodeInserted;
