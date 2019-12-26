@@ -2,10 +2,6 @@
 
   const $ = (selector, ctx = document) => [].slice.call(ctx.querySelectorAll(selector));
 
-  function existingDiagramNode (elem) {
-    return $('.mermaid', elem.parentElement)[0]
-  }
-
   function setupChart(elem, code) {
     var postfix = Math.random().toString(36).substr(2, 9);
     var source_name = elem.id;
@@ -36,16 +32,12 @@
       window.mermaid.init([existingDiagram]);
     }
     catch(error) {
-        existingDiagram.innerHTML = "Error when passing" + error;
+        existingDiagram.innerHTML = "Error when processing: <BR><PRE>" + error + "</PRE>";
     }
   };
 
   function processElement(elem) {
-    console.log(elem);
-    if (elem.tagName == "CODE") {
-      const code = elem.textContent;
-      setupChart(elem.parentElement, code);
-    } else if (elem.attributes["lang"] != null) {
+    if (elem.attributes["lang"] != null) {
       const codeElem = $('code', elem)[0];
       const code = codeElem.textContent;
       setupChart(elem, code);
