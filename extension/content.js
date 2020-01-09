@@ -32,7 +32,8 @@
       window.mermaid.init([existingDiagram]);
     }
     catch(error) {
-        existingDiagram.innerHTML = "Error when processing: <BR><PRE>" + error + "</PRE>";
+        existingDiagram.style.display = 'none';
+        elem.style.display = 'block';
     }
   };
 
