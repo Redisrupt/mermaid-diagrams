@@ -1,5 +1,5 @@
 # mermaid-diagrams
-A simple chrome extension to add support for [mermaid](http://knsv.github.io/mermaid/index.html) syntax in github pages and Azure DevOps pages.
+A simple chrome extension to add support for [mermaid](http://knsv.github.io/mermaid/index.html) syntax in github, bitbucket and Azure DevOps pages.
 
 For example add this to any wiki page or markdown file in github
 
