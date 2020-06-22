@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "mermaid-diagrams",
   "main": "index.js",
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Reva Tech",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mermaid": "^8.5.2"
+  }
 }

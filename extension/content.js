@@ -15,7 +15,7 @@
     let existingDiagrams = $(`#${mermaid_name}`);
     if (existingDiagrams.length > 0) {
       existingDiagram = existingDiagrams[0];
-      existingDiagram.innerHTML = code;
+      // existingDiagram.innerHTML = code;
     } else {
       // Create the element that will house the rendered diagram.
       elem.insertAdjacentHTML('afterend', `<div class="mermaid" id="${mermaid_name}">${code}</div>`);
@@ -28,22 +28,27 @@
     }
 
     try {
+      code = code.replace(/</g, '&lt;')
+      code = code.replace(/>/g, '&gt;')
       // Generate or regenerate diagram if it is existing.
-      window.mermaid.init([existingDiagram]);
+      window.mermaid.render(elem.id, code, () => {
+        console.log('>> done with ', elem.id);
+      });
     }
     catch(error) {
-        existingDiagram.style.display = 'none';
-        elem.style.display = 'block';
+      console.error('>>> mermaid error', error);
+      // existingDiagram.style.display = 'none';
+      // elem.style.display = 'block';
     }
   };
 
   function processElement(elem) {
     if (elem.attributes["lang"] !== null && elem.attributes['lang'] !== undefined) {
       const codeElem = $('code', elem)[0];
-      const code = codeElem.textContent;
+      const code = codeElem.innerHTML;
       setupChart(elem, code);
     } else {
-      const code = elem.textContent;
+      const code = elem.innerHTML;
       setupChart(elem, code);
     }
   };
