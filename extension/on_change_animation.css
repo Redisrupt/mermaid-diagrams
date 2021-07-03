@@ -13,7 +13,7 @@
   animation-name: mermaidDiagramCodeInserted;
 }
 
-.hljs {
-  animation-duration: 0.001s;
-  animation-name: mermaidDiagramCodeInserted;
+div.markdown-editor-preview.markdown-content > pre.hljs {
+	animation-duration: 0.001s;
+	animation-name: mermaidDiagramCodeInserted;
 }
