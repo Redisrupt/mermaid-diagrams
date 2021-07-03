@@ -39,19 +39,14 @@
     var mermaid_name = 'mermaid_' + source_name;
     let existingDiagrams = $(`#${mermaid_name}`);
     if (existingDiagrams.length > 0) {
-      console.log('Reuse existing diagram');
       existingDiagram = existingDiagrams[0];
-      // existingDiagram.innerHTML = code;
     } else {
-      console.log('Use new diagram');
       // Create the element that will house the rendered diagram.
-      console.log('Code is ', code);
       elem.insertAdjacentHTML('afterend', `<div class="mermaid" id="${mermaid_name}">${code}</div>`);
       existingDiagram = $(`#${mermaid_name}`)[0];
 
       // Create an observer to track changes to the diagram code.
       const observer = new MutationObserver(() => {
-        console.log('Mutated element', elem);
         processElement(elem);
       });
       observer.observe(elem, { characterData: true });
@@ -70,8 +65,6 @@
   };
 
   function processElement(elem) {
-    console.log('processElement', elem);
-    console.log('childElementSelector', childElementSelector);
     const childElements = $(childElementSelector, elem);
     for (const childElement of childElements) {
       setupChart(elem, childElement.innerText);
@@ -85,7 +78,6 @@
     if (event.animationName !== "mermaidDiagramCodeInserted") {
       return
     }
-    console.log('onElementInsert', event.target);
     processElement(event.target);
   }
 
