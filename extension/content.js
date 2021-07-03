@@ -16,10 +16,6 @@
     diagramRegex = /^\s*:::\s+mermaid\s+(.*):::\s*$/s;
   }
 
-  if (/bitbucket\.org/i.test(window.location.href)) {
-
-  }
-
   function setupChart(elem, code) {
     const diagramRegexMatch = diagramRegex.exec(code);
     if (diagramRegexMatch === null) {
@@ -85,9 +81,6 @@
     for (const parentElementSelector of parentElementSelectors) {
       $(parentElementSelector).forEach(processElement);
     }
-
-    // Bitbucket
-    //$('.codehilite.language-mermaid').forEach(processElement);
 
     // This catches diagrams that are added to the page after it is loaded.
     // This might include comments from other users.
