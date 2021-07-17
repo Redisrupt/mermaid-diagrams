@@ -6,8 +6,8 @@
   "manifest_version": 2,
   "minimum_chrome_version": "56",
   "permissions": [
-    "https://dev.azure.com/*.md*",
-    "https://github.com/*.md*",
+    "https://dev.azure.com/*",
+    "https://github.com/*",
     "https://gist.github.com/*"
   ],
   "icons": {
@@ -17,8 +17,8 @@
     {
       "run_at": "document_start",
       "matches": [
-        "https://dev.azure.com/*.md*",
-        "https://github.com/*.md*",
+        "https://dev.azure.com/*",
+        "https://github.com/*",
         "https://gist.github.com/*"
       ],
       "css": [

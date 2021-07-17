@@ -5,7 +5,7 @@
 	let diagramRegex = /(.+)/s;
 
 	if (/github\.com/i.test(window.location.href)) {
-		parentElementSelectors = ['[lang="mermaid"]', '.language-mermaid'];
+		parentElementSelectors = ['[lang="mermaid"]'];
 		childElementSelector = 'code';
 	}
 
