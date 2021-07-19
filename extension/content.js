@@ -12,7 +12,7 @@
 	if (/dev\.azure\.com/i.test(window.location.href)) {
 		parentElementSelectors = ['div.markdown-editor-preview.markdown-content > pre.hljs'];
 		childElementSelector = 'code';
-		diagramRegex = /^\s*((classDiagram|erDiagram|flowchart|journey|gannt|graph|pie|requirementDiagram|sequenceDiagram|stateDiagram) ?.*)$/s;
+		diagramRegex = /^\s*((classDiagram|classDiagram-v2|erDiagram|flowchart|gitGraph|journey|gannt|graph|pie|requirementDiagram|sequenceDiagram|stateDiagram|stateDiagram-v2) ?.*)$/s;
 	}
 
 	function setupChart(elem, code) {
