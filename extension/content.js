@@ -1,34 +1,36 @@
 (function () {
 	const $ = (selector, ctx = document) => [].slice.call(ctx.querySelectorAll(selector));
-	let parentElementSelectors = [];
-	let childElementSelector = '';
-	let diagramRegex = /(.+)/s;
+
+	let transformations = [];
 
 	if (/github\.com/i.test(window.location.href)) {
-		parentElementSelectors = ['[lang="mermaid"]'];
-		childElementSelector = 'code';
+		transformations = [
+			{
+				parentElementSelector: '[lang="mermaid"]',
+				childElementSelector: 'code',
+				diagramRegex: /(.+)/s
+			}
+		];
 	}
 
 	if (/dev\.azure\.com/i.test(window.location.href)) {
-		parentElementSelectors = ['div.markdown-editor-preview.markdown-content > pre.hljs'];
-		childElementSelector = 'code';
-		diagramRegex = /^\s*((classDiagram|classDiagram-v2|erDiagram|flowchart|gitGraph|journey|gannt|graph|pie|requirementDiagram|sequenceDiagram|stateDiagram|stateDiagram-v2) ?.*)$/s;
+		transformations = [
+			{
+				parentElementSelector: 'div.markdown-content > pre.hljs',
+				childElementSelector: 'code',
+				diagramRegex: /^\s*((classDiagram|classDiagram-v2|erDiagram|flowchart|gitGraph|journey|gannt|graph|pie|requirementDiagram|sequenceDiagram|stateDiagram|stateDiagram-v2) ?.*)$/s
+			}
+		];
 	}
 
-	function setupChart(elem, code) {
-		const diagramRegexMatch = diagramRegex.exec(code);
-		if (diagramRegexMatch === null) {
-			return;
-		}
+	function renderChart(parentElem, code) {
 
-		code = diagramRegexMatch[1];
+		var source_name = parentElem.id;
 
-		var source_name = elem.id;
-
-		if (elem.id == "") {
+		if (parentElem.id == "") {
 			const postfix = Math.random().toString(36).substr(2, 9);
 			source_name = 'idname_' + postfix;
-			elem.id = source_name;
+			parentElem.id = source_name;
 		}
 
 		var mermaid_name = 'mermaid__' + source_name;
@@ -39,15 +41,14 @@
 		}
 		else {
 			// Create the element that will house the rendered diagram.
-			elem.insertAdjacentHTML('afterend', `<div id="${mermaid_name}"></div>`);
+			parentElem.insertAdjacentHTML('afterend', `<div id="${mermaid_name}"></div>`);
 			existingDiagram = $(`#${mermaid_name}`)[0];
 
 			// Create an observer to track changes to the diagram code.
 			const observer = new MutationObserver(() => {
-				console.log('Data changed');
-				processElement(existingDiagram);
+				processElement(parentElem);
 			});
-			observer.observe(elem, { characterData: true });
+			observer.observe(parentElem, { characterData: true, childList: true, subtree: true });
 		}
 
 		try {
@@ -63,10 +64,33 @@
 		}
 	};
 
-	function processElement(elem) {
-		const childElements = $(childElementSelector, elem);
+	function transformElement(parentElement, transformation) {
+		const childElements = $(transformation.childElementSelector, parentElement);
 		for (const childElement of childElements) {
-			setupChart(elem, childElement.innerText);
+
+			const diagramRegexMatch = transformation.diagramRegex.exec(childElement.innerText);
+			if (diagramRegexMatch === null) {
+				return;
+			}
+
+			code = diagramRegexMatch[1];
+			renderChart(parentElement, code);
+		}
+	}
+
+	function processElement(parentElement) {
+		for (const transformation of transformations) {
+			const matchingElements = $(transformation.parentElementSelector);
+			if (matchingElements.includes(parentElement)) {
+				transformElement(parentElement, transformation);
+				break;
+			}
+		}
+	}
+
+	function processPage() {
+		for (const transformation of transformations) {
+			$(transformation.parentElementSelector).forEach(x => transformElement(x, transformation));
 		}
 	}
 
@@ -77,13 +101,11 @@
 		if (event.animationName !== "mermaidDiagramCodeInserted") {
 			return;
 		}
-		processElement(event.target);
+		processElement(event.target)
 	}
 
 	document.addEventListener('DOMContentLoaded', () => {
-		for (const parentElementSelector of parentElementSelectors) {
-			$(parentElementSelector).forEach(processElement);
-		}
+		processPage();
 
 		// This catches diagrams that are added to the page after it is loaded.
 		// This might include comments from other users.

@@ -14,7 +14,7 @@
 }
 
 /* Detect new diagrams on dev.azure.com */
-div.markdown-editor-preview.markdown-content > pre.hljs {
+div.markdown-content > pre.hljs {
 	animation-duration: 0.001s;
 	animation-name: mermaidDiagramCodeInserted;
 }
