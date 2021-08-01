@@ -7,13 +7,14 @@
 	to { opacity: 1; }
 }
 
-/* The class list here determines what elements are detected. */
-.language-mermaid, [lang="mermaid"] {
+/* Detect new diagrams on github.com */
+[lang="mermaid"] {
   animation-duration: 0.001s;
   animation-name: mermaidDiagramCodeInserted;
 }
 
-.hljs {
-  animation-duration: 0.001s;
-  animation-name: mermaidDiagramCodeInserted;
+/* Detect new diagrams on dev.azure.com */
+div.markdown-content > pre.hljs {
+	animation-duration: 0.001s;
+	animation-name: mermaidDiagramCodeInserted;
 }
