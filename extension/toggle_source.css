@@ -1,0 +1,25 @@
+.mermaid-diagrams-plugin_source-code {
+    cursor: pointer !important;
+}
+
+.mermaid-diagrams-plugin_source-code--hidden {
+    max-height: 1.8em !important;
+    overflow-y: hidden;
+    padding-top: 0.4em !important;
+}
+
+    .mermaid-diagrams-plugin_source-code--hidden:before {
+        content: "\25b6   View source";
+        margin-bottom: 1em;
+        display: block;
+    }
+
+.mermaid-diagrams-plugin_source-code--visible {
+    padding-top: 0.4em !important;
+}
+
+.mermaid-diagrams-plugin_source-code--visible:before {
+    content: "\25bc   Hide source";
+    margin-bottom: 1em;
+    display: block;
+}

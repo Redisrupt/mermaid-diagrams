@@ -23,7 +23,8 @@
       ],
       "css": [
         "diagrams.css",
-        "on_change_animation.css"
+        "on_change_animation.css",
+        "toggle_source.css"
       ],
       "js": [
         "mermaid.min.js",
