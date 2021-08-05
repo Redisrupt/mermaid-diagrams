@@ -1,0 +1,37 @@
+.mermaid-diagrams-plugin_source-code {
+    cursor: pointer !important;
+}
+
+.mermaid-diagrams-plugin_source-code--hidden {
+    max-height: 3em !important;
+    overflow-y: hidden;
+    padding-top: 0.4em !important;
+}
+
+    .mermaid-diagrams-plugin_source-code--hidden:before {
+        content: "View source \25b6";
+        margin-bottom: 5em;
+        display: block;
+        border-top: 1px solid silver;
+        border-left: 1px solid silver;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+        width: 7.5em;
+        padding: 0.5em;
+    }
+
+.mermaid-diagrams-plugin_source-code--visible {
+    padding-top: 0.4em !important;
+}
+
+    .mermaid-diagrams-plugin_source-code--visible:before {
+        content: "Hide source \25bc";
+        margin-bottom: 1em;
+        display: block;
+        border-top: 1px solid silver;
+        border-left: 1px solid silver;
+        border-bottom: 1px solid gray;
+        border-right: 1px solid gray;
+        width: 7.5em;
+        padding: 0.5em;
+    }

@@ -23,6 +23,16 @@
 		];
 	}
 
+	function toggleSourceCode(elem, firstTime) {
+		if (firstTime) {
+			elem.classList.toggle('mermaid-diagrams-plugin_source-code');
+		}
+		elem.classList.toggle('mermaid-diagrams-plugin_source-code--hidden');
+		if (!firstTime) {
+			elem.classList.toggle('mermaid-diagrams-plugin_source-code--visible');
+		}
+	}
+
 	function renderChart(parentElem, code) {
 
 		var source_name = parentElem.id;
@@ -43,6 +53,12 @@
 			// Create the element that will house the rendered diagram.
 			parentElem.insertAdjacentHTML('afterend', `<div id="${mermaid_name}"></div>`);
 			existingDiagram = $(`#${mermaid_name}`)[0];
+
+			// Make source code node collapsible
+			parentElem.addEventListener('click', () => toggleSourceCode(parentElem));
+
+			// Collapse the source code element
+			toggleSourceCode(parentElem, true);
 
 			// Create an observer to track changes to the diagram code.
 			const observer = new MutationObserver(() => {
